@@ -9,9 +9,19 @@ Hints:
 
 $(document).ready(function(){
 
+  createCalculation($('#addition'), addition);
+  createCalculation($('#subtraction'), subtraction);
+  createCalculation($('#multiplication'), multiplication);
+  createCalculation($('#division'), division)
+  createCalculation($('#modulus'), modulus);
+
+
+});
+
+function createCalculation(element, callback) {
   var x, y, z;
 
-  $('#addition').change(function() {
+  element.change(function() {
 
     x = $(this).find('input:eq(0)').val();
     y = $(this).find('input:eq(1)').val();
@@ -19,10 +29,29 @@ $(document).ready(function(){
     x = parseFloat(x);
     y = parseFloat(y);
 
-    z = x + y;
+    z = callback(x, y);
 
     $(this).find('input:eq(2)').val(z);
 
   });
+}
 
-});
+function subtraction(x, y) {
+  return x - y;
+}
+
+function addition(x, y) {
+  return x + y;
+}
+
+function multiplication(x, y) {
+  return x * y;
+}
+
+function division(x, y) {
+  return x/y;
+}
+
+function modulus(x, y) {
+  return x%y;
+}
